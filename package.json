@@ -1,16 +1,14 @@
 {
-  "name": "create-react-app-with-flow-bin-and-route",
+  "name": "travel-webpage",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": "flow && react-scripts start",
@@ -35,6 +33,10 @@
     ]
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.0",
     "flow-bin": "^0.126.1",
     "flow-typed": "^2.6.1",
     "jest-cli": "^20.0.4"
