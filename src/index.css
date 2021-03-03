@@ -2,4 +2,8 @@ body {
   font-family: 'OpenSans', 'OpenSans-Bold', 'Poppins-Bold', 'Poppins-SemiBold', 'SansitaOne';
   background-color: #E7EDF6;
   margin: 20px;
+  overflow:hidden;
+}
+* {
+  box-sizing: border-box;
 }
