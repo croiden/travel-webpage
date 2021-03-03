@@ -1,14 +1,26 @@
 // @flow
-import React from 'react'
+import React, { useState } from "react";
 import styled from 'styled-components'
 
 import Card from './card'
 import places from '../../data/places.json'
 
-const Container= styled.div`
-    
-`
+import Drawer from '../../shared/drawer.js'
+
+const Container = styled.div`
+  overflow: auto;
+  height: calc(100vh - 100px);
+`;
 const Grid = () => {
-return <Container>{places.map(p=> <Card key={p.id} {...p}/>)}</Container>;
+
+    const [selected, setSelected] = useState([])
+
+    const handleSelect = (id: number) => {
+        setSelected([...selected, id])
+    }
+    const handleRemove = (id:number) => {
+        setSelected(selected.filter(s=> s!==id))
+    }
+    return <Container>{places.map(p=> <Card key={p.id} {...p} onSelect={handleSelect} onRemove={handleRemove}/>)} {selected.length? <Drawer selected={selected.length}/>:null}</Container>;
 }
 export default Grid
