@@ -10,14 +10,13 @@ type Props = {
   height?: number,
   width?: number,
   color?: string,
-  onClick?: ()=> void,
 };
 export default ({
-  name,
+  name = "heart",
   width = 18,
   height = 18,
   color = "#C5D3E8",
-  onClick = ()=>{},
+  ...props
 }: Props) => {
   const ImportedIconRef = useRef(null);
   const [loading, setLoading] = useState(false);
@@ -27,6 +26,7 @@ export default ({
     const importIcon = async () => {
       try {
         ImportedIconRef.current = (
+          // $FlowFixMe
           await import(
             `!!@svgr/webpack?-svgo,+titleProp,+ref!../assets/${name}/svg/${name}.svg`
           )
@@ -43,7 +43,7 @@ export default ({
   if (!loading && ImportedIconRef.current) {
     const { current: ImportedIcon } = ImportedIconRef;
     return (
-      <Container onClick={onClick}>
+      <Container {...props}>
         <ImportedIcon width={width} height={height} stroke={color} />
       </Container>
     );
