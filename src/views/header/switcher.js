@@ -35,10 +35,18 @@ const Switcher = ({ onChange, ...props }: Props) => {
   };
   return (
     <Container {...props}>
-      <StyledButton selected={selected === "grid"} onClick={handleGridClick}>
+      <StyledButton
+        selected={selected === "grid"}
+        onClick={handleGridClick}
+        disabled={selected === "grid"}
+      >
         <Icon name="grid-view-icon" width={18} height={18} color={"#FFFFFF"} />
       </StyledButton>
-      <StyledButton selected={selected === "list"} onClick={handleListClick}>
+      <StyledButton
+        selected={selected === "list"}
+        onClick={handleListClick}
+        disabled={selected === "list"}
+      >
         <Icon name="list-view-icon" width={18} height={18} color={"#FFFFFF"} />
       </StyledButton>
     </Container>

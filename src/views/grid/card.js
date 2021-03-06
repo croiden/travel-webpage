@@ -1,20 +1,19 @@
 // @flow
 import React, { useState } from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import Tag from './tag'
+import Tag from "./tag";
 
 // import FocusableDiv from "../../shared/a11y/focusable.js";
 import Icon from "../../shared/icon";
 import Checkbox from "../../shared/checkbox";
 import Button from "../../shared/button.js";
 
-
 const CheckboxWrapper = styled.div`
   position: absolute;
   right: 20px;
   top: 20px;
-  display: ${(props) => props.selected? 'block':'none'};
+  display: ${(props) => (props.selected ? "block" : "none")};
 `;
 const Container = styled.div`
   ${(props) =>
@@ -44,12 +43,12 @@ const Image = styled.div`
   height: 149px;
 `;
 const DetailsSection = styled.div`
-  margin:10px;
-`
+  margin: 10px;
+`;
 const Title = styled.div`
   color: ${(props) =>
-  props.selected ? props.theme.colors.white : props.theme.colors.primary};
-  font-family: ${props => props.theme.fonts[1]};
+    props.selected ? props.theme.colors.white : props.theme.colors.primary};
+  font-family: ${(props) => props.theme.fonts[1]};
   font-size: 24px;
   line-height: 29px;
   text-align: left;
@@ -68,8 +67,7 @@ const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-const Tags = styled.div`
-`
+const Tags = styled.div``;
 type Props = {
   id: number,
   title: string,
@@ -105,7 +103,7 @@ const Card = ({
   };
   const handleSelectClick = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
     setSelected(!selected);
-    !selected ? onSelect(id):onRemove(id);
+    !selected ? onSelect(id) : onRemove(id);
   };
   return (
     <Container selected={selected}>
@@ -114,22 +112,22 @@ const Card = ({
       </CheckboxWrapper>
       <Image url={image} />
       <Tags>
-      {tags.map((t, index) => (
-        <Tag key={index} text={t} />
-      ))}
+        {tags.map((t, index) => (
+          <Tag key={index} text={t} />
+        ))}
       </Tags>
       <DetailsSection>
         <Title selected={selected}>{title}</Title>
         <Content>{content}</Content>
       </DetailsSection>
       <Footer>
-        <Button onClick={handleMessageClick}>
+        <Button aria-label={"message"} onClick={handleMessageClick}>
           <Icon
             name={"message-square"}
             color={message ? "#2B2ECF" : "#C5D3E8"}
           />
         </Button>
-        <Button onClick={handleHeartClick}>
+        <Button aria-label={"heart"} onClick={handleHeartClick}>
           <Icon
             name={"heart"}
             width={22}
@@ -141,4 +139,4 @@ const Card = ({
     </Container>
   );
 };
-export default Card
+export default Card;

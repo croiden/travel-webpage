@@ -10,7 +10,6 @@ import Button from "../../shared/button.js";
 import useWindowSize from "../../hooks/useWindowSize";
 import { MOBILE } from "../../constants";
 
-
 const Container = styled.div`
   background-image: ${(props) =>
     `linear-gradient(135deg, ${props.theme.colors.primary} 0%, #652bcf 100%)`};
@@ -128,6 +127,7 @@ const Nav = () => {
   ) =>
     seq.map((item) => (
       <StyledButton
+        aria-label={item}
         key={item}
         selected={selected === item}
         onClick={() => {

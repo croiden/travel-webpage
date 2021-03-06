@@ -6,6 +6,10 @@ import Switcher from "./switcher";
 
 import useWindowSize from "../../hooks/useWindowSize";
 import { MOBILE } from "../../constants";
+import Icon from "../../shared/icon";
+import Button from "../../shared/button.js";
+// $FlowFixMe
+import { ReactComponent as Logo } from "../../assets/logo/svg/logo.svg";
 
 const Container = styled.div`
   margin: 0px 10px;
@@ -53,6 +57,12 @@ const StyledSwitcher = styled(Switcher)`
   left: 0;
   right: 0;
 `;
+const Mheader = styled.div`
+  background: transparent;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const PAGE_TITLE = "Discover great places to visit";
 const Header = () => {
@@ -65,6 +75,12 @@ const Header = () => {
     </Container>
   ) : (
     <MContainer>
+      <Mheader>
+        <Logo />
+        <Button onClick={() => {}} aria-label={"menu"}>
+          <Icon name={"menu"} width={18} height={14} />
+        </Button>
+      </Mheader>
       <MTitleWrapper>
         <MTitle>{PAGE_TITLE}</MTitle>
       </MTitleWrapper>
