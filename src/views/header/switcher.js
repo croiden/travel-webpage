@@ -50,7 +50,7 @@ const Switcher = ({ view, onChange, ...props }: Props) => {
           name="grid-view-icon"
           width={18}
           height={18}
-          color={theme.colors.white}
+          color={view === GRIDVIEW ? theme.colors.white : theme.colors.grey}
         />
       </StyledButton>
       <StyledButton
@@ -63,7 +63,7 @@ const Switcher = ({ view, onChange, ...props }: Props) => {
           name="list-view-icon"
           width={18}
           height={18}
-          color={theme.colors.white}
+          color={view === LISTVIEW ? theme.colors.white : theme.colors.grey}
         />
       </StyledButton>
     </Container>
