@@ -8,8 +8,10 @@ import Icon from "../../shared/icon.js";
 import { type ViewType } from "../../types";
 import { GRIDVIEW, LISTVIEW } from "../../constants";
 
+import { theme } from "../../theme/index.js";
+
 const Container = styled.div`
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.colors.white};
   border-radius: 30px;
   height: 50px;
   width: 95px;
@@ -21,7 +23,8 @@ const StyledButton = styled(Button)`
   border-radius: 100%;
   width: 40px;
   height: 40px;
-  background-color: ${(props) => (props.selected ? "#2B2ECF" : "transparent")};
+  background-color: ${(props) =>
+    props.selected ? props.theme.colors.primary : "transparent"};
 `;
 type Props = {
   view: ViewType,
@@ -43,7 +46,12 @@ const Switcher = ({ view, onChange, ...props }: Props) => {
         disabled={view === GRIDVIEW}
         aria-label={"grid view"}
       >
-        <Icon name="grid-view-icon" width={18} height={18} color={"#FFFFFF"} />
+        <Icon
+          name="grid-view-icon"
+          width={18}
+          height={18}
+          color={theme.colors.white}
+        />
       </StyledButton>
       <StyledButton
         selected={view === LISTVIEW}
@@ -51,7 +59,12 @@ const Switcher = ({ view, onChange, ...props }: Props) => {
         disabled={view === LISTVIEW}
         aria-label={"list view"}
       >
-        <Icon name="list-view-icon" width={18} height={18} color={"#FFFFFF"} />
+        <Icon
+          name="list-view-icon"
+          width={18}
+          height={18}
+          color={theme.colors.white}
+        />
       </StyledButton>
     </Container>
   );

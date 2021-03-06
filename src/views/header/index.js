@@ -41,7 +41,7 @@ const MContainer = styled.div`
 `;
 const MTitle = styled.h1`
   text-shadow: 0px 4px 8px #32261a;
-  color: #ffffff;
+  color: ${(props) => props.theme.colors.white};
   font-family: ${(props) => props.theme.fonts[1]};
   font-size: 42px;
   line-height: 50px;

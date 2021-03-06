@@ -4,8 +4,7 @@ import { ThemeProvider } from "styled-components";
 
 import { MOBILE } from "../constants";
 
-
-const theme = {
+export const theme = {
   colors: {
     primary: "#2B2ECF",
     secondary: "#FF0066",

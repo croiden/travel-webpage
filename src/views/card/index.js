@@ -9,6 +9,8 @@ import Icon from "../../shared/icon";
 import Checkbox from "../../shared/checkbox";
 import Button from "../../shared/button.js";
 
+import { theme } from "../../theme/index.js";
+
 const CheckboxWrapper = styled.div`
   position: absolute;
   right: 20px;
@@ -18,7 +20,7 @@ const CheckboxWrapper = styled.div`
 const Container = styled.div`
   ${(props) =>
     props.selected
-      ? `background-image: linear-gradient(135deg, #2b2ecf 0%, #652bcf 100%);`
+      ? `background-image: linear-gradient(135deg, ${props.theme.colors.primary} 0%, ${props.theme.colors.purple} 100%);`
       : `background-color: ${props.theme.colors.white};`}
 
   border-radius: 20px;
@@ -56,7 +58,7 @@ const Title = styled.div`
 `;
 const Content = styled.div`
   padding-top: 10px;
-  color: #7f8a9c;
+  color: ${(props) => props.theme.colors.darkGrey};
   font-family: ${(props) => props.theme.fonts[0]};
   font-size: 18px;
   line-height: 22px;
@@ -124,7 +126,7 @@ const Card = ({
         <Button aria-label={"message"} onClick={handleMessageClick}>
           <Icon
             name={"message-square"}
-            color={message ? "#2B2ECF" : "#C5D3E8"}
+            color={message ? theme.colors.primary : theme.colors.grey}
           />
         </Button>
         <Button aria-label={"heart"} onClick={handleHeartClick}>
@@ -132,7 +134,7 @@ const Card = ({
             name={"heart"}
             width={22}
             height={19}
-            color={heart ? "#FF0066" : "#C5D3E8"}
+            color={heart ? theme.colors.secondary : theme.colors.grey}
           />
         </Button>
       </Footer>

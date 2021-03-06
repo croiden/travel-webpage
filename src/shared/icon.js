@@ -1,10 +1,12 @@
 // @flow
-import React, {useState, useEffect, useRef} from 'react';
-import styled from 'styled-components'
+import React, { useState, useEffect, useRef } from "react";
+import styled from "styled-components";
 
-const Container= styled.div`
-    padding:10px;
-`
+import { theme } from "../theme/index.js";
+
+const Container = styled.div`
+  padding: 10px;
+`;
 type Props = {
   name: string,
   height?: number,
@@ -15,7 +17,7 @@ export default ({
   name = "heart",
   width = 18,
   height = 18,
-  color = "#C5D3E8",
+  color = theme.colors.grey,
   ...props
 }: Props) => {
   const ImportedIconRef = useRef(null);
@@ -25,8 +27,7 @@ export default ({
     setLoading(true);
     const importIcon = async () => {
       try {
-        ImportedIconRef.current = (
-          // $FlowFixMe
+        ImportedIconRef.current = ( // $FlowFixMe
           await import(
             `!!@svgr/webpack?-svgo,+titleProp,+ref!../assets/${name}/svg/${name}.svg`
           )

@@ -5,12 +5,14 @@ import styled from "styled-components";
 import Button from "../../shared/button.js";
 import Icon from "../../shared/icon";
 
+import { theme } from "../../theme/index.js";
+
 const Container = styled.div`
   display: flex;
   align-items: center;
   ${(props) =>
     props.selected
-      ? `background-image: linear-gradient(135deg, #2b2ecf 0%, #652bcf 100%);`
+      ? `background-image: linear-gradient(135deg, ${props.theme.colors.primary} 0%, ${props.theme.colors.purple} 100%);`
       : `background-color: ${props.theme.colors.white};`}
   border-radius: 20px;
   width: calc(100vw - 20px);
@@ -90,7 +92,7 @@ const Row = ({
         <Button aria-label={"message"} onClick={handleMessageClick}>
           <Icon
             name={"message-square"}
-            color={message ? "#2B2ECF" : "#C5D3E8"}
+            color={message ? theme.colors.primary : theme.colors.grey}
           />
         </Button>
         <Button aria-label={"heart"} onClick={handleHeartClick}>
@@ -98,7 +100,7 @@ const Row = ({
             name={"heart"}
             width={22}
             height={19}
-            color={heart ? "#FF0066" : "#C5D3E8"}
+            color={heart ? theme.colors.secondary : theme.colors.grey}
           />
         </Button>
       </Footer>

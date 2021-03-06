@@ -19,9 +19,11 @@ import {
 } from "../../constants";
 import { type NavButtons } from "../../types";
 
+import { theme } from "../../theme/index.js";
+
 const Container = styled.div`
   background-image: ${(props) =>
-    `linear-gradient(135deg, ${props.theme.colors.primary} 0%, #652bcf 100%)`};
+    `linear-gradient(135deg, ${props.theme.colors.primary} 0%, ${props.theme.colors.purple} 100%)`};
   border-radius: 20px;
   display: flex;
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}px) {
@@ -58,11 +60,11 @@ const StyledButton = styled(Button)`
   ${(props) =>
     props.selected &&
     `
-  background-color: #FF0066;
+  background-color: ${props.theme.colors.secondary};
     border-radius: 25px;
   `}
   &:hover, &:focus {
-    background-color: #ff0066;
+    background-color: ${(props) => props.theme.colors.secondary};
     border-radius: 25px;
   }
   outline: none;
@@ -72,7 +74,7 @@ const NotifyWrapper = styled.div`
   position: relative;
 `;
 const Notify = styled.div`
-  background-color: #ff0066;
+  background-color: ${(props) => props.theme.colors.secondary};
   border-radius: 100%;
   width: 10px;
   height: 10px;
@@ -138,7 +140,7 @@ const Nav = () => {
           name={item}
           width={ICON_DIMENSION[item].w}
           height={ICON_DIMENSION[item].h}
-          color={"#FFFFFF"}
+          color={theme.colors.white}
         />
       </StyledButton>
     ));
@@ -157,7 +159,12 @@ const Nav = () => {
                   setSelected(LOGOUT);
                 }}
               >
-                <Icon name={LOGOUT} width={18} height={18} color={"#FFFFFF"} />
+                <Icon
+                  name={LOGOUT}
+                  width={18}
+                  height={18}
+                  color={theme.colors.white}
+                />
               </StyledButton>
             </div>
           </MainSection>

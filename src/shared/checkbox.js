@@ -1,10 +1,10 @@
 // @flow
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 // $FlowFixMe
-import {ReactComponent as TickIcon} from '../assets/tick/svg/tick.svg'
-
+import { ReactComponent as TickIcon } from "../assets/tick/svg/tick.svg";
+import { theme } from "../theme/index.js";
 
 const CheckboxContainer = styled.div`
   display: inline-block;
@@ -30,10 +30,8 @@ const StyledCheckbox = styled.div`
   border-radius: 100%;
   width: 30px;
   height: 30px;
-  ${(props) =>
-    !props.checked &&
-    `
-  border: 2px solid #ffffff;`}
+  border: 2px solid ${(props) =>
+    !props.checked ? props.theme.colors.white : "none"}}
 
   background-color: ${(props) => (props.checked ? "#37f6b8" : "transparent")};
 `;
@@ -54,7 +52,7 @@ const Checkbox = ({ checked = false, onChange, ...props }: Props) => (
         checked={checked}
         width={"16px"}
         height={"16px"}
-        fill={"#FFFFFF"}
+        fill={theme.colors.white}
       />
     </StyledCheckbox>
   </CheckboxContainer>

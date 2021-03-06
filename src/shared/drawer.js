@@ -3,9 +3,14 @@ import React from "react";
 import styled from "styled-components";
 
 import Icon from "./icon";
+import { theme } from "../theme/index.js";
 
 const Container = styled.div`
-  background-image: linear-gradient(135deg, #2b2ecf 0%, #652bcf 100%);
+  background-image: ${(props) => `linear-gradient(
+    135deg,
+    ${props.theme.colors.primary} 0%,
+    ${props.theme.colors.purple} 100%
+  )`};
   position: absolute;
   left: 0;
   right: 0;
@@ -28,7 +33,7 @@ const Container = styled.div`
   }
 `;
 const Text = styled.div`
-  color: #ffffff;
+  color: ${(props) => props.theme.colors.white};
   font-family: ${(props) => props.theme.fonts[2]};
   font-size: 24px;
   line-height: 34px;
@@ -43,10 +48,10 @@ type Props = {
 const Drawer = ({ selected }: Props) => {
   return (
     <Container>
-      <Icon name={"minus"} color={"#C5D3E8"} width={30} height={30} />
+      <Icon name={"minus"} color={theme.colors.grey} width={30} height={30} />
       <Text>{`${selected} item selected`}</Text>
-      <Icon name={"heart"} color={"#C5D3E8"} width={22} height={19} />
-      <Icon name={"share"} color={"#C5D3E8"} width={16} height={20} />
+      <Icon name={"heart"} color={theme.colors.grey} width={22} height={19} />
+      <Icon name={"share"} color={theme.colors.grey} width={16} height={20} />
     </Container>
   );
 };
