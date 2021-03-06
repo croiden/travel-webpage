@@ -110,7 +110,7 @@ const Card = ({
   return (
     <Container selected={selected}>
       <CheckboxWrapper selected={selected}>
-        <Checkbox checked={selected} onClick={handleSelectClick} />
+        <Checkbox checked={selected} onChange={handleSelectClick} />
       </CheckboxWrapper>
       <Image url={image} />
       <Tags>

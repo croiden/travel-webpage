@@ -24,6 +24,9 @@ const theme = {
     medium: "2em",
     large: "3em",
   },
+  breakpoints: {
+    mobile: 480,
+  },
 };
 
 type Props = {

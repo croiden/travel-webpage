@@ -1,29 +1,41 @@
 // @flow
-import React, {useState} from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
 
 // $FlowFixMe
 import { ReactComponent as Logo } from "../../assets/logo/svg/logo.svg";
 import Icon from "../../shared/icon";
 import Button from "../../shared/button.js";
 
+import useWindowSize from "../../hooks/useWindowSize";
+
 const Container = styled.div`
   background-image: ${(props) =>
     `linear-gradient(135deg, ${props.theme.colors.primary} 0%, #652bcf 100%)`};
   border-radius: 20px;
-  width: 100px;
-  height: calc(100vh - 40px);
-  padding: 30px 14px 0px;
   display: flex;
-  flex-direction: column;
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}px) {
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 60px;
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.mobile + 1}px) {
+    flex-direction: column;
+    width: 100px;
+    height: calc(100vh - 40px);
+    padding: 30px 14px 0px;
+  }
 `;
 
 const MainSection = styled.div`
-  flex:1;
+  flex: 1;
   padding: 20px 11px;
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
+  justify-content: space-between;
 `;
 
 const StyledButton = styled(Button)`
@@ -42,12 +54,12 @@ const StyledButton = styled(Button)`
     background-color: #ff0066;
     border-radius: 25px;
   }
-  outline:none;
+  outline: none;
 `;
 
-const NotifyWrapper= styled.div`
-  position:relative;
-`
+const NotifyWrapper = styled.div`
+  position: relative;
+`;
 const Notify = styled.div`
   background-color: #ff0066;
   border-radius: 100%;
@@ -56,83 +68,109 @@ const Notify = styled.div`
   position: absolute;
   right: 10px;
   top: 6px;
-  &:hover, &:focus{
-    display:none;
+  &:hover,
+  &:focus {
+    display: none;
   }
 `;
 
-const HOME:'home' = 'home'
+const HOME: "home" = "home";
 const BRIEFCASE: "briefcase" = "briefcase";
 const COMPASS: "compass" = "compass";
 const BELL: "bell" = "bell";
 const GEAR: "gear" = "gear";
-const LOGOUT: "logout" = "logout";
+const LOGOUT: "log-out" = "log-out";
 
+const ICON_DIMENSION = {
+  [HOME]: {
+    w: 18,
+    h: 20,
+  },
+  [BRIEFCASE]: {
+    w: 20,
+    h: 18,
+  },
+  [COMPASS]: {
+    w: 20,
+    h: 20,
+  },
+  [BELL]: {
+    w: 18,
+    h: 20,
+  },
+  [GEAR]: {
+    w: 22,
+    h: 22,
+  },
+  [LOGOUT]: {
+    w: 18,
+    h: 18,
+  },
+};
+
+const MOBILE_SEQ = [BELL, BRIEFCASE, HOME, COMPASS, GEAR];
+const DESKTOP_SEQ = [HOME, BRIEFCASE, COMPASS, BELL, GEAR];
+
+const MOBILE = 480;
 
 const Nav = () => {
+  const [selected, setSelected] = useState(HOME);
+  const windowSize = useWindowSize();
 
-  const [selected, setSelected] = useState(HOME)
+  const getNavButtons = (
+    seq: Array<
+      | typeof HOME
+      | typeof BRIEFCASE
+      | typeof COMPASS
+      | typeof BELL
+      | typeof GEAR
+    >
+  ) =>
+    seq.map((item) => (
+      <StyledButton
+        key={item}
+        selected={selected === item}
+        onClick={() => {
+          setSelected(item);
+        }}
+      >
+        {item === BELL ? (
+          <NotifyWrapper>
+            <Notify />
+          </NotifyWrapper>
+        ) : null}
+        <Icon
+          name={item}
+          width={ICON_DIMENSION[item].w}
+          height={ICON_DIMENSION[item].h}
+          color={"#FFFFFF"}
+        />
+      </StyledButton>
+    ));
 
   return (
     <Container>
-      <Logo />
-      <MainSection>
-        <div>
-          <StyledButton
-            selected={selected === HOME}
-            onClick={() => {
-              setSelected(HOME);
-            }}
-          >
-            <Icon name={"home"} width={18} height={20} color={"#FFFFFF"} />
-          </StyledButton>
-          <StyledButton
-            selected={selected === BRIEFCASE}
-            onClick={() => {
-              setSelected(BRIEFCASE);
-            }}
-          >
-            <Icon name={"briefcase"} width={20} height={18} color={"#FFFFFF"} />
-          </StyledButton>
-          <StyledButton
-            selected={selected === COMPASS}
-            onClick={() => {
-              setSelected(COMPASS);
-            }}
-          >
-            <Icon name={"compass"} width={20} height={20} color={"#FFFFFF"} />
-          </StyledButton>
-          <StyledButton
-            selected={selected === BELL}
-            onClick={() => {
-              setSelected(BELL);
-            }}
-          >
-          <NotifyWrapper>
-            <Notify /></NotifyWrapper>
-            <Icon name={"bell"} width={18} height={20} color={"#FFFFFF"} />
-          </StyledButton>
-          <StyledButton
-            selected={selected === GEAR}
-            onClick={() => {
-              setSelected(GEAR);
-            }}
-          >
-            <Icon name={"gear"} width={22} height={22} color={"#FFFFFF"} />
-          </StyledButton>
-        </div>
-        <div>
-          <StyledButton
-            selected={selected === LOGOUT}
-            onClick={() => {
-              setSelected(LOGOUT);
-            }}
-          >
-            <Icon name={"log-out"} width={18} height={18} color={"#FFFFFF"} />
-          </StyledButton>
-        </div>
-      </MainSection>
+      {windowSize.width > MOBILE ? (
+        <>
+          <Logo />
+          <MainSection>
+            <div>{getNavButtons(DESKTOP_SEQ)}</div>
+            <div>
+              <StyledButton
+                selected={selected === LOGOUT}
+                onClick={() => {
+                  setSelected(LOGOUT);
+                }}
+              >
+                <Icon name={LOGOUT} width={18} height={18} color={"#FFFFFF"} />
+              </StyledButton>
+            </div>
+          </MainSection>
+        </>
+      ) : (
+        getNavButtons(MOBILE_SEQ)
+      )}
     </Container>
   );
-}
-export default Nav
+};
+export default Nav;

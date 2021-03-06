@@ -10,6 +10,11 @@ import Drawer from '../../shared/drawer.js'
 const Container = styled.div`
   overflow: auto;
   height: calc(100vh - 100px);
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 const Grid = () => {
 

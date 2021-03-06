@@ -8,16 +8,23 @@ import Icon from "./icon";
 const Container = styled.div`
   background-image: linear-gradient(135deg, #2b2ecf 0%, #652bcf 100%);
   border-radius: 40px;
-  width: 427px;
-  height: 80px;
   position: absolute;
-  bottom: 20px;
   margin: auto;
   left: 0;
   right: 0;
   display: flex;
   align-items: center;
-  padding:20px;
+  padding: 20px;
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}px) {
+    top: 10px;
+    width: 100vw;
+    height: 60px;
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.mobile + 1}px) {
+    bottom: 20px;
+    width: 427px;
+    height: 80px;
+  }
 `;
 const Text = styled.div`
   color: #ffffff;

@@ -44,11 +44,11 @@ const StyledTickIcon = styled(TickIcon)`
 
 type Props = {
   checked?: boolean,
-  onClick: (e: SyntheticKeyboardEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticKeyboardEvent<HTMLInputElement>) => void,
 };
-const Checkbox = ({ checked = false, onClick, ...props }: Props) => (
+const Checkbox = ({ checked = false, onChange, ...props }: Props) => (
   <CheckboxContainer>
-    <HiddenCheckbox {...props} checked={checked} onClick={onClick} />
+    <HiddenCheckbox {...props} checked={checked} onChange={onChange} />
     <StyledCheckbox checked={checked}>
       <StyledTickIcon
         checked={checked}
