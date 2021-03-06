@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 const Title = styled.h1`
   color: ${(props) => props.theme.colors.secondary};
-  font-family: Poppins;
+  font-family: ${props => props.theme.fonts[3]};
   font-size: 36px;
   line-height: 43px;
   text-align: left;

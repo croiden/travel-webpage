@@ -14,7 +14,7 @@ const Container = styled.div`
 
 const Text = styled.div`
   color: ${(props) => props.theme.colors.white};
-  font-family: OpenSans;
+  font-family: ${(props) => props.theme.fonts[2]};
   font-size: 14px;
   line-height: 17px;
   text-transform: uppercase;

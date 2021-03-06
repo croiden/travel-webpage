@@ -13,7 +13,12 @@ const theme = {
     darkGrey: "#7F8A9C",
     purple: "#652BCF",
   },
-  fonts: ["OpenSans", "OpenSans-Bold"],
+  fonts: [
+    "'Open Sans', sans-serif",
+    "'Poppins', sans-serif",
+    "'Open Sans-Bold', sans-serif",
+    "'Poppins-Bold', sans-serif",
+  ],
   fontSizes: {
     small: "1em",
     medium: "2em",

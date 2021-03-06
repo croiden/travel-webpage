@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 const Text = styled.div`
   color: #ffffff;
-  font-family: OpenSans;
+  font-family: ${props => props.theme.fonts[2]};
   font-size: 24px;
   line-height: 34px;
   text-align: left;

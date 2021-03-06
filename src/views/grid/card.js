@@ -47,26 +47,29 @@ const DetailsSection = styled.div`
   margin:10px;
 `
 const Title = styled.div`
-  color: ${(props) => props.selected? props.theme.colors.white:props.theme.colors.primary};
-  font-family: Poppins;
+  color: ${(props) =>
+  props.selected ? props.theme.colors.white : props.theme.colors.primary};
+  font-family: ${props => props.theme.fonts[1]};
   font-size: 24px;
   line-height: 29px;
   text-align: left;
   max-width: 265px;
 `;
 const Content = styled.div`
-  padding-top:10px;
+  padding-top: 10px;
   color: #7f8a9c;
-  font-family: OpenSans;
+  font-family: ${(props) => props.theme.fonts[0]};
   font-size: 18px;
   line-height: 22px;
   text-align: left;
-  max-width:265px;
+  max-width: 265px;
 `;
 const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+const Tags = styled.div`
+`
 type Props = {
   id: number,
   title: string,
@@ -110,9 +113,11 @@ const Card = ({
         <Checkbox checked={selected} onClick={handleSelectClick} />
       </CheckboxWrapper>
       <Image url={image} />
+      <Tags>
       {tags.map((t, index) => (
         <Tag key={index} text={t} />
       ))}
+      </Tags>
       <DetailsSection>
         <Title selected={selected}>{title}</Title>
         <Content>{content}</Content>
