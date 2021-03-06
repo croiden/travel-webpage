@@ -8,6 +8,7 @@ import Tag from "./tag";
 import Icon from "../../shared/icon";
 import Checkbox from "../../shared/checkbox";
 import Button from "../../shared/button.js";
+import Focusable from "../../shared/a11y/focusable.js";
 
 import { theme } from "../../theme/index.js";
 
@@ -17,18 +18,19 @@ const CheckboxWrapper = styled.div`
   top: 20px;
   display: ${(props) => (props.selected ? "block" : "none")};
 `;
-const Container = styled.div`
+const Container = styled(Focusable)`
   ${(props) =>
     props.selected
       ? `background-image: linear-gradient(135deg, ${props.theme.colors.primary} 0%, ${props.theme.colors.purple} 100%);`
       : `background-color: ${props.theme.colors.white};`}
 
   border-radius: 20px;
-  display: inline-block;
+  display: inline-grid;
   padding: 10px;
   margin: 10px;
   position: relative;
   cursor: pointer;
+  outline: none;
   &:hover,
   &:focus {
     box-shadow: rgb(43 46 207 / 50%) 0px 5px 19px;
@@ -99,18 +101,24 @@ const Card = ({
   const [message, setMessage] = useState(propMessage);
 
   const handleHeartClick = (e: SyntheticKeyboardEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setHeart(!heart);
   };
   const handleMessageClick = (e: SyntheticKeyboardEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setMessage(!message);
   };
   const handleSelectClick = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
     !selected ? onSelect(id) : onRemove(id);
   };
   return (
-    <Container selected={selected}>
+    <Container selected={selected} onClick={handleSelectClick}>
       <CheckboxWrapper selected={selected}>
-        <Checkbox checked={selected} onChange={handleSelectClick} />
+        <Checkbox
+          checked={selected}
+          onChange={handleSelectClick}
+          tabIndex={-1}
+        />
       </CheckboxWrapper>
       <Image url={image} />
       <Tags>

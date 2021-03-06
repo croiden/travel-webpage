@@ -4,10 +4,11 @@ import styled from "styled-components";
 
 import Button from "../../shared/button.js";
 import Icon from "../../shared/icon";
+import Focusable from "../../shared/a11y/focusable.js";
 
 import { theme } from "../../theme/index.js";
 
-const Container = styled.div`
+const Container = styled(Focusable)`
   display: flex;
   align-items: center;
   ${(props) =>
@@ -23,6 +24,7 @@ const Container = styled.div`
     width: calc(100vw - 180px);
   }
   cursor: pointer;
+  outline: none;
   &:hover,
   &:focus {
     box-shadow: rgb(43 46 207 / 50%) 0px 5px 19px;
@@ -76,9 +78,11 @@ const Row = ({
   const [message, setMessage] = useState(propMessage);
 
   const handleHeartClick = (e: SyntheticKeyboardEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setHeart(!heart);
   };
   const handleMessageClick = (e: SyntheticKeyboardEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setMessage(!message);
   };
   const handleClick = () => {
