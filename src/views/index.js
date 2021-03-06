@@ -1,28 +1,50 @@
 // @flow
-import React from 'react'
+import React, { useState } from "react";
 import styled from "styled-components";
 
-import Navigation from './navigation'
-import Header from './header'
-import Grid from './grid'
+import Navigation from "./navigation";
+import Header from "./header";
+import Content from "./content";
+import Drawer from "../shared/drawer.js";
+
+import { GRIDVIEW } from "../constants";
+import { type ViewType } from "../types";
 
 const Container = styled.div`
-    display:flex;
-`
+  display: flex;
+`;
 const MainSection = styled.div`
   @media (min-width: ${(props) => props.theme.breakpoints.mobile + 1}px) {
     margin: 20px;
   }
 `;
 const Main = () => {
-return (
-  <Container>
-    <Navigation />
-    <MainSection>
-      <Header />
-      <Grid />
-    </MainSection>
-  </Container>
-);
-}
-export default Main
+  const [view, setView] = useState(GRIDVIEW);
+  const [selected, setSelected] = useState([]);
+  const handleViewChange = (value: ViewType) => {
+    setView(value);
+  };
+
+  const handleSelect = (id: number) => {
+    setSelected([...selected, id]);
+  };
+  const handleRemove = (id: number) => {
+    setSelected(selected.filter((s) => s !== id));
+  };
+  return (
+    <Container>
+      <Navigation />
+      <MainSection>
+        <Header view={view} onViewChange={handleViewChange} />
+        <Content
+          view={view}
+          selected={selected}
+          onSelect={handleSelect}
+          onRemove={handleRemove}
+        />
+      </MainSection>
+      {selected.length ? <Drawer selected={selected.length} /> : null}
+    </Container>
+  );
+};
+export default Main;

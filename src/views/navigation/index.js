@@ -8,7 +8,16 @@ import Icon from "../../shared/icon";
 import Button from "../../shared/button.js";
 
 import useWindowSize from "../../hooks/useWindowSize";
-import { MOBILE } from "../../constants";
+import {
+  MOBILE,
+  HOME,
+  BRIEFCASE,
+  COMPASS,
+  BELL,
+  GEAR,
+  LOGOUT,
+} from "../../constants";
+import { type NavButtons } from "../../types";
 
 const Container = styled.div`
   background-image: ${(props) =>
@@ -20,8 +29,9 @@ const Container = styled.div`
     position: absolute;
     bottom: 0;
     z-index: 1;
-    width: 100vw;
+    width: calc(100vw - 20px);
     height: 60px;
+    margin: 0px 10px 10px;
   }
   @media (min-width: ${(props) => props.theme.breakpoints.mobile + 1}px) {
     flex-direction: column;
@@ -75,13 +85,6 @@ const Notify = styled.div`
   }
 `;
 
-const HOME: "home" = "home";
-const BRIEFCASE: "briefcase" = "briefcase";
-const COMPASS: "compass" = "compass";
-const BELL: "bell" = "bell";
-const GEAR: "gear" = "gear";
-const LOGOUT: "log-out" = "log-out";
-
 const ICON_DIMENSION = {
   [HOME]: {
     w: 18,
@@ -116,15 +119,7 @@ const Nav = () => {
   const [selected, setSelected] = useState(HOME);
   const windowSize = useWindowSize();
 
-  const getNavButtons = (
-    seq: Array<
-      | typeof HOME
-      | typeof BRIEFCASE
-      | typeof COMPASS
-      | typeof BELL
-      | typeof GEAR
-    >
-  ) =>
+  const getNavButtons = (seq: NavButtons) =>
     seq.map((item) => (
       <StyledButton
         aria-label={item}

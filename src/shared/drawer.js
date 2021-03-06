@@ -6,9 +6,7 @@ import Icon from "./icon";
 
 const Container = styled.div`
   background-image: linear-gradient(135deg, #2b2ecf 0%, #652bcf 100%);
-  border-radius: 40px;
   position: absolute;
-  margin: auto;
   left: 0;
   right: 0;
   display: flex;
@@ -16,13 +14,17 @@ const Container = styled.div`
   padding: 20px;
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}px) {
     top: 10px;
-    width: 100vw;
+    width: calc(100vw - 20px);
     height: 60px;
+    margin: 0px 10px;
+    border-radius: 20px;
   }
   @media (min-width: ${(props) => props.theme.breakpoints.mobile + 1}px) {
     bottom: 20px;
     width: 427px;
     height: 80px;
+    margin: auto;
+    border-radius: 40px;
   }
 `;
 const Text = styled.div`

@@ -10,9 +10,10 @@ import Icon from "../../shared/icon";
 import Button from "../../shared/button.js";
 // $FlowFixMe
 import { ReactComponent as Logo } from "../../assets/logo/svg/logo.svg";
+import { type ViewType } from "../../types";
 
 const Container = styled.div`
-  margin: 0px 10px;
+  margin: 0px 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -65,13 +66,22 @@ const Mheader = styled.div`
 `;
 
 const PAGE_TITLE = "Discover great places to visit";
-const Header = () => {
+
+type Props = {
+  view: ViewType,
+  onViewChange: (v: ViewType) => void,
+};
+const Header = ({ view, onViewChange }: Props) => {
   const windowSize = useWindowSize();
+
+  const handleViewSwitch = (value: ViewType) => {
+    onViewChange(value);
+  };
 
   return windowSize.width > MOBILE ? (
     <Container>
       <Title>{PAGE_TITLE}</Title>
-      <Switcher onChange={() => {}} />
+      <Switcher view={view} onChange={handleViewSwitch} />
     </Container>
   ) : (
     <MContainer>
@@ -84,7 +94,7 @@ const Header = () => {
       <MTitleWrapper>
         <MTitle>{PAGE_TITLE}</MTitle>
       </MTitleWrapper>
-      <StyledSwitcher onChange={() => {}} />
+      <StyledSwitcher view={view} onChange={handleViewSwitch} />
     </MContainer>
   );
 };

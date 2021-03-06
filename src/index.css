@@ -1,8 +1,8 @@
 body {
-  font-family: 'Open Sans', 'Poppins', sans-serif;
-  background-color: #E7EDF6;
+  font-family: "Open Sans", "Poppins", sans-serif;
+  background-color: #e7edf6;
   margin: 20px;
-  overflow:hidden;
+  overflow: hidden;
 }
 * {
   box-sizing: border-box;
@@ -10,6 +10,6 @@ body {
 
 @media screen and (max-width: 480px) {
   body {
-    margin:0px;
+    margin: 0px;
   }
 }

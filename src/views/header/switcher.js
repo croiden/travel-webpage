@@ -1,9 +1,12 @@
 // @flow
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Button from "../../shared/button.js";
 import Icon from "../../shared/icon.js";
+
+import { type ViewType } from "../../types";
+import { GRIDVIEW, LISTVIEW } from "../../constants";
 
 const Container = styled.div`
   background-color: #ffffff;
@@ -21,31 +24,32 @@ const StyledButton = styled(Button)`
   background-color: ${(props) => (props.selected ? "#2B2ECF" : "transparent")};
 `;
 type Props = {
-  onChange: () => void,
+  view: ViewType,
+  onChange: (v: ViewType) => void,
 };
 
-const Switcher = ({ onChange, ...props }: Props) => {
-  const [selected, setSelected] = useState("grid");
-
+const Switcher = ({ view, onChange, ...props }: Props) => {
   const handleGridClick = () => {
-    setSelected("grid");
+    onChange(GRIDVIEW);
   };
   const handleListClick = () => {
-    setSelected("list");
+    onChange(LISTVIEW);
   };
   return (
     <Container {...props}>
       <StyledButton
-        selected={selected === "grid"}
+        selected={view === GRIDVIEW}
         onClick={handleGridClick}
-        disabled={selected === "grid"}
+        disabled={view === GRIDVIEW}
+        aria-label={"grid view"}
       >
         <Icon name="grid-view-icon" width={18} height={18} color={"#FFFFFF"} />
       </StyledButton>
       <StyledButton
-        selected={selected === "list"}
+        selected={view === LISTVIEW}
         onClick={handleListClick}
-        disabled={selected === "list"}
+        disabled={view === LISTVIEW}
+        aria-label={"list view"}
       >
         <Icon name="list-view-icon" width={18} height={18} color={"#FFFFFF"} />
       </StyledButton>

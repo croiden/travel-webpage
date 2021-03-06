@@ -1,6 +1,6 @@
 // @flow
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const NakedButton = styled.button`
   background: none;
@@ -9,6 +9,7 @@ const NakedButton = styled.button`
   padding: 0;
   font: inherit;
   cursor: pointer;
+  outline-color: ${(props) => props.theme.colors.primary};
 `;
 
 type Props = {
@@ -24,4 +25,4 @@ const Button = ({ onClick, children, ...props }: Props) => {
   );
 };
 
-export default Button
+export default Button;

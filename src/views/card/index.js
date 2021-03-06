@@ -69,6 +69,7 @@ const Footer = styled.div`
 `;
 const Tags = styled.div``;
 type Props = {
+  selected: boolean,
   id: number,
   title: string,
   image: string,
@@ -81,6 +82,7 @@ type Props = {
 };
 
 const Card = ({
+  selected,
   id,
   title,
   image,
@@ -93,16 +95,14 @@ const Card = ({
 }: Props) => {
   const [heart, setHeart] = useState(propHeart);
   const [message, setMessage] = useState(propMessage);
-  const [selected, setSelected] = useState(false);
 
   const handleHeartClick = (e: SyntheticKeyboardEvent<HTMLButtonElement>) => {
     setHeart(!heart);
   };
   const handleMessageClick = (e: SyntheticKeyboardEvent<HTMLButtonElement>) => {
-    setMessage(!!message);
+    setMessage(!message);
   };
   const handleSelectClick = (e: SyntheticKeyboardEvent<HTMLInputElement>) => {
-    setSelected(!selected);
     !selected ? onSelect(id) : onRemove(id);
   };
   return (
