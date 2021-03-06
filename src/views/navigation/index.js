@@ -8,6 +8,8 @@ import Icon from "../../shared/icon";
 import Button from "../../shared/button.js";
 
 import useWindowSize from "../../hooks/useWindowSize";
+import { MOBILE } from "../../constants";
+
 
 const Container = styled.div`
   background-image: ${(props) =>
@@ -110,8 +112,6 @@ const ICON_DIMENSION = {
 
 const MOBILE_SEQ = [BELL, BRIEFCASE, HOME, COMPASS, GEAR];
 const DESKTOP_SEQ = [HOME, BRIEFCASE, COMPASS, BELL, GEAR];
-
-const MOBILE = 480;
 
 const Nav = () => {
   const [selected, setSelected] = useState(HOME);

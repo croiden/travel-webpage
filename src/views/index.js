@@ -10,8 +10,10 @@ const Container = styled.div`
     display:flex;
 `
 const MainSection = styled.div`
-    margin:20px;
-`
+  @media (min-width: ${(props) => props.theme.breakpoints.mobile + 1}px) {
+    margin: 20px;
+  }
+`;
 const Main = () => {
 return (
   <Container>

@@ -2,6 +2,9 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
+import { MOBILE } from "../constants";
+
+
 const theme = {
   colors: {
     primary: "#2B2ECF",
@@ -25,7 +28,7 @@ const theme = {
     large: "3em",
   },
   breakpoints: {
-    mobile: 480,
+    mobile: MOBILE,
   },
 };
 

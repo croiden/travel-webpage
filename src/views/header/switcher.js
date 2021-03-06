@@ -1,6 +1,6 @@
 // @flow
-import React, {useState} from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
 
 import Button from "../../shared/button.js";
 import Icon from "../../shared/icon.js";
@@ -8,9 +8,10 @@ import Icon from "../../shared/icon.js";
 const Container = styled.div`
   background-color: #ffffff;
   border-radius: 30px;
-  width: 95px;
   height: 50px;
-  padding:5px;
+  width: 95px;
+  min-width: 95px;
+  padding: 5px;
 `;
 
 const StyledButton = styled(Button)`
@@ -20,27 +21,27 @@ const StyledButton = styled(Button)`
   background-color: ${(props) => (props.selected ? "#2B2ECF" : "transparent")};
 `;
 type Props = {
-    onChange:()=> void,
-}
+  onChange: () => void,
+};
 
-const Switcher = ({ onChange }: Props) => {
-  const [selected, setSelected] = useState('grid')
+const Switcher = ({ onChange, ...props }: Props) => {
+  const [selected, setSelected] = useState("grid");
 
   const handleGridClick = () => {
-    setSelected('grid')
-  }
+    setSelected("grid");
+  };
   const handleListClick = () => {
     setSelected("list");
   };
   return (
-    <Container>
-      <StyledButton selected={selected === 'grid'} onClick={handleGridClick}>
+    <Container {...props}>
+      <StyledButton selected={selected === "grid"} onClick={handleGridClick}>
         <Icon name="grid-view-icon" width={18} height={18} color={"#FFFFFF"} />
       </StyledButton>
-      <StyledButton selected={selected === 'list'} onClick={handleListClick}>
+      <StyledButton selected={selected === "list"} onClick={handleListClick}>
         <Icon name="list-view-icon" width={18} height={18} color={"#FFFFFF"} />
       </StyledButton>
     </Container>
   );
 };
-export default Switcher
+export default Switcher;

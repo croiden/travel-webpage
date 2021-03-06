@@ -1,9 +1,8 @@
 // @flow
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 import Icon from "./icon";
-
 
 const Container = styled.div`
   background-image: linear-gradient(135deg, #2b2ecf 0%, #652bcf 100%);
@@ -28,7 +27,7 @@ const Container = styled.div`
 `;
 const Text = styled.div`
   color: #ffffff;
-  font-family: ${props => props.theme.fonts[2]};
+  font-family: ${(props) => props.theme.fonts[2]};
   font-size: 24px;
   line-height: 34px;
   text-align: left;
@@ -36,8 +35,8 @@ const Text = styled.div`
   padding: 10px;
 `;
 type Props = {
-    selected:number,
-}
+  selected: number,
+};
 
 const Drawer = ({ selected }: Props) => {
   return (
@@ -49,4 +48,4 @@ const Drawer = ({ selected }: Props) => {
     </Container>
   );
 };
-export default Drawer
+export default Drawer;
