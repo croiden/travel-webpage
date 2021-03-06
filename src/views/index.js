@@ -43,7 +43,7 @@ const Main = () => {
           onRemove={handleRemove}
         />
       </MainSection>
-      {selected.length ? <Drawer selected={selected.length} /> : null}
+      <Drawer selected={selected.length} />
     </Container>
   );
 };
