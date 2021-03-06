@@ -33,8 +33,8 @@ export default ({ onClick, disabled, children, ...props }: Props) => {
   };
   return (
     <div
-      ref={ref}
       {...props}
+      ref={ref}
       role="button"
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
